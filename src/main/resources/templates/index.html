@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+          crossorigin="anonymous">
+    <link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css"
+          rel="stylesheet"
+          crossorigin="anonymous">
+
+    <title>Are you sure?</title>
+    <script>
+        const hideForm = () => {
+            document.getElementById('container').style.display = 'none'
+            document.getElementById('hidden_text').style.display = 'inline-block'
+        }
+    </script>
+
+</head>
+<body>
+
+<div id="content">
+
+    <div id="container" class="container">
+        <h2 class="form-signin-heading">Link to service ABC?</h2>
+        <div class="row">
+            <div class="col">
+                <a class="btn btn-primary w-50" href="/oauth2/authorization/SANDBOX">OK</a>
+            </div>
+            <div class="col">
+                <button class="btn btn-secondary w-50" onclick="hideForm()">CANCEL</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="hidden_text" style="display: none">
+        <span>Reload page to show the form</span>
+    </div>
+
+</div>
+
+</body>
+</html>

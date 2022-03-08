@@ -1,0 +1,17 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          SANDBOX:
+            base-uri: http://test.devenv.smartym.by
+            client-id: HKGzRFKpSVjSpTPQ
+            client-secret: ovnLjsKEEciCxjwmeHZSB
+            redirect-uri: http://localhost:8080/login/oauth2/code/sandbox
+            scope: aisp, cbpii, pisp
+            response_type: code
+        provider:
+          SANDBOX:
+#            authorization-uri: http://test.devenv.smartym.by/signin
+            authorization-uri: ${spring.security.oauth2.client.registration.SANDBOX.base-uri}/signin
+            token-uri: ${spring.security.oauth2.client.registration.SANDBOX.base-uri}/token
