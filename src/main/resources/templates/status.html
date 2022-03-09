@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Status</title>
+</head>
+<body>
+
+<div class="content-justify">
+
+    <div sec:authorize="isAnonymous()">
+        <span>This page is unavailable</span>
+    </div>
+
+    <div sec:authorize="isAuthenticated()">
+        <div class="row">
+            <div class="col">
+                Payment status: <span th:text="${status}"></span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+</body>
+</html>

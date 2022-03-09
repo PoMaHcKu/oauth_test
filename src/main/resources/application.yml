@@ -12,6 +12,5 @@ spring:
             response_type: code
         provider:
           SANDBOX:
-#            authorization-uri: http://test.devenv.smartym.by/signin
             authorization-uri: ${spring.security.oauth2.client.registration.SANDBOX.base-uri}/signin
             token-uri: ${spring.security.oauth2.client.registration.SANDBOX.base-uri}/token

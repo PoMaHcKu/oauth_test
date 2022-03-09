@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,19 +28,64 @@
 <div id="content">
 
     <div id="container" class="container">
-        <h2 class="form-signin-heading">Link to service ABC?</h2>
-        <div class="row">
-            <div class="col">
-                <a class="btn btn-primary w-50" href="/oauth2/authorization/SANDBOX">OK</a>
-            </div>
-            <div class="col">
-                <button class="btn btn-secondary w-50" onclick="hideForm()">CANCEL</button>
-            </div>
-        </div>
-    </div>
 
-    <div id="hidden_text" style="display: none">
-        <span>Reload page to show the form</span>
+        <div sec:authorize="isAuthenticated()">
+
+            <h2 class="form-signin-heading">Payment form</h2>
+
+            <div class="row">
+                <form action="#" th:action="@{/payment}" th:object="${payload}" method="post">
+
+                    <div class="form-group">
+
+                        <label for="creditor_iban">Creditor IBAN</label>
+                        <input id="creditor_iban" class="form-control" type="text" th:field="*{beneficiary.creditorAccount.iban}"/>
+
+                        <label for="creditor_name">Creditor name</label>
+                        <input id="creditor_name" class="form-control" type="text" th:field="*{beneficiary.creditor.name}"/>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="amount">Amount</label>
+                        <input id="amount" class="form-control" type="number" th:field="*{creditTransferTransaction.instructedAmount.amount}" />
+
+                        <label for="currency">Currency</label>
+                        <select id="currency" class="form-control" th:field="*{creditTransferTransaction.instructedAmount.currency}" >
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="RUB">RUB</option>
+                            <option value="BYN">BYN</option>
+                        </select>
+
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Submit"/>
+                </form>
+            </div>
+
+        </div>
+
+        <div sec:authorize="isAnonymous()">
+
+
+            <h2 class="form-signin-heading">Link to service ABC?</h2>
+            <div class="row">
+                <div class="col">
+                    <a class="btn btn-primary w-50" href="http://localhost:8080/oauth2/authorization/SANDBOX">OK</a>
+                </div>
+                <div class="col">
+                    <button class="btn btn-secondary w-50" onclick="hideForm()">CANCEL</button>
+                </div>
+            </div>
+
+            <div id="hidden_text" style="display: none">
+                <span>Reload page to show the form</span>
+            </div>
+
+        </div>
+
     </div>
 
 </div>

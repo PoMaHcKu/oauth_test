@@ -1,5 +1,6 @@
 package com.payment.oauth.config;
 
+import com.payment.oauth.model.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.FormHttpMessageConverter;
@@ -58,21 +59,6 @@ public class SecureConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService() {
-        return userRequest -> new OAuth2User() {
-            @Override
-            public Map<String, Object> getAttributes() {
-                return userRequest.getAdditionalParameters();
-            }
-
-            @Override
-            public Collection<? extends GrantedAuthority> getAuthorities() {
-                return List.of(new SimpleGrantedAuthority("authority"));
-            }
-
-            @Override
-            public String getName() {
-                return "user";
-            }
-        };
+        return userRequest -> new User(userRequest.getAdditionalParameters());
     }
 }

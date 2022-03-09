@@ -54,7 +54,9 @@ public class CustomTokenResponseConverter implements Converter<Map<String, Objec
                 .expiresIn(expiresIn)
                 .scopes(scopes)
                 .refreshToken(refreshToken)
-                .additionalParameters(Map.of("username", "user"))
+                .additionalParameters(Map.of(
+                        "username", "user",
+                        "token", accessToken))
                 .build();
     }
 }
