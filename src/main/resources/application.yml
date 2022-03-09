@@ -4,13 +4,13 @@ spring:
       client:
         registration:
           SANDBOX:
-            base-uri: http://test.devenv.smartym.by
-            client-id: HKGzRFKpSVjSpTPQ
-            client-secret: ovnLjsKEEciCxjwmeHZSB
+            base-uri: ${BASE_URL}
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
             redirect-uri: http://localhost:8080/login/oauth2/code/sandbox
             scope: aisp, cbpii, pisp
             response_type: code
         provider:
           SANDBOX:
-            authorization-uri: ${spring.security.oauth2.client.registration.SANDBOX.base-uri}/signin
-            token-uri: ${spring.security.oauth2.client.registration.SANDBOX.base-uri}/token
+            authorization-uri: ${BASE_URL}/signin
+            token-uri: ${BASE_URL}/token
